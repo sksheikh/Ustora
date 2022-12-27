@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Front\FrontController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\CategoryController;
 
 
 //Front Routes
@@ -15,5 +16,10 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+    //Dashboard Routes
     Route::get('/dashboard',[DashboardController::class,'dashboard'])->name('dashboard');
+
+    //Category Routes
+    Route::resource('/categories',CategoryController::class);
+
 });
