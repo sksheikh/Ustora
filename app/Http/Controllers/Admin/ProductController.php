@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +17,11 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index',[
-            'categories'=>Category::orderBy('id','DESC')->get(),
+//        return Product::orderBy('id','desc')->get();
+        return view('admin.product.index',[
+           'products'=>Product::orderBy('id','desc')->get(),
         ]);
+
     }
 
     /**
@@ -27,7 +31,10 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.product.create',[
+            'categories'=>Category::where('status',1)->get(),
+            'brands'=>Brand::where('status',1)->get(),
+        ]);
     }
 
     /**
@@ -39,8 +46,8 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
 //        return $request;
-        Category::createOrUpdateCategory($request);
-        return redirect()->route('categories.index')->with('success','Category Created Successfully');
+        Product::createOrUpdateProduct($request);
+        return redirect()->route('products.index')->with('success','Products created successfully');
     }
 
     /**
@@ -62,8 +69,10 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.category.edit',[
-            'category'=>Category::find($id),
+        return view('admin.product.edit',[
+            'product'=>Product::find($id),
+            'categories'=>Category::where('status',1)->get(),
+            'brands'=>Brand::where('status',1)->get(),
         ]);
     }
 
@@ -76,8 +85,8 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Category::createOrUpdateCategory($request,$id);
-        return redirect()->route('categories.index')->with('success','Category updated successfully');
+        Product::createOrUpdateProduct($request,$id);
+        return redirect()->route('products.index')->with('success','Product updated successfully');
     }
 
     /**
@@ -88,8 +97,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        return redirect()->back()->with('success','Category Deleted successfully');
-
+        Product::find($id)->delete();
+        return redirect()->back()->with('success','Product deleted successfully');
     }
 }

@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.index',[
-            'categories'=>Category::orderBy('id','DESC')->get(),
-        ]);
+        //
     }
 
     /**
@@ -27,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        //
     }
 
     /**
@@ -38,9 +35,7 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-//        return $request;
-        Category::createOrUpdateCategory($request);
-        return redirect()->route('categories.index')->with('success','Category Created Successfully');
+        //
     }
 
     /**
@@ -62,9 +57,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        return view('admin.category.edit',[
-            'category'=>Category::find($id),
-        ]);
+        //
     }
 
     /**
@@ -76,8 +69,7 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        Category::createOrUpdateCategory($request,$id);
-        return redirect()->route('categories.index')->with('success','Category updated successfully');
+        //
     }
 
     /**
@@ -88,8 +80,6 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        Category::find($id)->delete();
-        return redirect()->back()->with('success','Category Deleted successfully');
-
+        //
     }
 }

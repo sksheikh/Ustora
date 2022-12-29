@@ -10,7 +10,8 @@ class Category extends Model
     use HasFactory;
     protected $fillable=[
         'name',
-        'slug'
+        'slug',
+        'status'
     ];
 
     public static function createOrUpdateCategory($request,$id=null)
@@ -18,6 +19,7 @@ class Category extends Model
         Category::updateOrcreate(['id'=>$id],[
             'name'=>$request->name,
             'slug'=>strtolower(str_replace(' ','-', $request->name)),
+            'status'=>$request->status,
         ]);
     }
 }

@@ -1,25 +1,25 @@
 @extends('admin.master')
 
 @section('title')
-    Manage Category
+    Manage Brand
 @endsection
 
 @section('body')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Category</h1>
+        <h1 class="mt-4">Brand</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item"><a href="{{route('dashboard')}}">Dashboard</a></li>
-            <li class="breadcrumb-item active">Manage Category</li>
+            <li class="breadcrumb-item active">Manage Brand</li>
         </ol>
 
         <div class="card mb-4">
             <div class="card-header">
                 <div class="float-start">
                     <i class="fas fa-table me-1"></i>
-                    Manage Category
+                    Manage Brand
                 </div>
                 <div class="float-end">
-                    <a href="{{route('categories.create')}}" class="btn btn-primary ">Create Category</a>
+                    <a href="{{route('brands.create')}}" class="btn btn-primary ">Create Brand</a>
                 </div>
             </div>
             <div class="card-body">
@@ -44,15 +44,15 @@
                     </tr>
                     </tfoot>
                     <tbody>
-                    @foreach($categories as $category)
+                    @foreach($brands as $brand)
                         <tr>
                             <td>{{$loop->iteration}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->slug}}</td>
-                            <td>{{$category->status == 1 ? 'published' : 'unpublished'}}</td>
+                            <td>{{$brand->name}}</td>
+                            <td>{{$brand->slug}}</td>
+                            <td>{{$brand->status == 1 ? 'published' : 'unpublished'}}</td>
                             <td>
-                                <a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-primary">Edit</a>
-                                <form onsubmit="return confirm('Are your sure to delete this?')" action="{{route('categories.destroy',$category->id)}}" method="post" class="d-inline-block">
+                                <a href="{{route('brands.edit',$brand->id)}}" class="btn btn-sm btn-primary">Edit</a>
+                                <form onsubmit="return confirm('Are your sure to delete this?')" action="{{route('brands.destroy',$brand->id)}}" method="post" class="d-inline-block">
                                     @csrf
                                     @method('delete')
                                     <button type="submit"  class="btn btn-sm btn-danger " >Delete</button>
@@ -67,3 +67,4 @@
         </div>
     </div>
 @endsection
+
