@@ -59,7 +59,7 @@
                             <td>{{$product->category_id}}</td>
                             <td>{{$product->brand_id}}</td>
                             <td>{{$product->price}}</td>
-                            <td>{{$product->description}}</td>
+                            <td>{{Str::limit($product->description,20)}}</td>
                             <td>
                                 <img src="{{asset($product->image)}}" alt="" width="50">
                             </td>

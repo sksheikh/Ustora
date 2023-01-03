@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\ProductController;
 //Front Routes
 Route::as('front.')->group(function (){
     Route::get('/',[FrontController::class,'home'])->name('home');
+    Route::get('/product-details/{id}',[FrontController::class,'productDetails'])->name('product');
 });
 
 Route::middleware([
